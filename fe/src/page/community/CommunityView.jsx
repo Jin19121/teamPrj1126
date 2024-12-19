@@ -239,12 +239,10 @@ function CommunityView(props) {
       });
   };
 
-  // TODO: 로그인에 대한 권한 완료 후 좋아요 즉시 반영 시도하기
   const handleLikeClick = () => {
     axios
       .post(`/api/community/like/${id}`)
-      .then((e) => {
-        console.log(e);
+      .then(() => {
         fetch();
       })
       .finally(() => setMyCommunityLike(!myCommunityLike));

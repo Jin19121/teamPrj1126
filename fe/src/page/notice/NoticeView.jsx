@@ -8,7 +8,7 @@ import {
 import { AuthenticationContext } from "../../components/context/AuthenticationProvider.jsx";
 import axios from "axios";
 import { Breadcrumb } from "../../components/root/Breadcrumb.jsx";
-import { createListCollection, HStack, Icon, Stack } from "@chakra-ui/react";
+import { HStack, Icon, Stack } from "@chakra-ui/react";
 import { Field } from "../../components/ui/field.jsx";
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
@@ -64,14 +64,6 @@ function NoticeView(props) {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  useEffect(() => {
-    axios.get(`/api/notice/list?${searchParams.toString()}`).then((res) => {
-      console.log(res.data);
-      setNoticeList(res.data.list);
-      setCountNotice(res.data.countNotice);
-    });
-  }, [pathname]);
-
   const handleDeleteClick = () => {
     axios
       .delete(`/api/notice/delete/${id}`)
@@ -100,11 +92,12 @@ function NoticeView(props) {
     navigate(`/notice/edit/${id}`);
   };
 
-  const fetchLike = () => {
+  const fetch = () => {
     axios
-      .get(`/api/notice/view/${id}`)
+      .get(`/api/notice/fetch/${id}`)
       .then((res) => {
         setNotice(res.data);
+        setMyNoticeLike(res.data.myNoticeLike);
       })
       .catch((err) => console.error(err));
   };
@@ -113,19 +106,11 @@ function NoticeView(props) {
     navigate(`/member/login`);
   }
 
-  // TODO: 로그인에 대한 권한 완료 후 좋아요 즉시 반영 시도하기
   const handleLikeClick = () => {
     axios
-      .post(`/api/notice/like/${id}`, {
-        like: myNoticeLike,
-      })
-      .then((e) => {
-        const likeSuccess = e.data.message;
-        toaster.create({
-          type: likeSuccess.type,
-          description: likeSuccess.text,
-        });
-        fetchLike();
+      .post(`/api/notice/like/${id}`)
+      .then(() => {
+        fetch();
       })
       .finally(() => setMyNoticeLike(!myNoticeLike));
   };
@@ -133,40 +118,6 @@ function NoticeView(props) {
   function handleWriteClick() {
     navigate(`/notice/write`);
   }
-
-  function handleViewClick(id) {
-    axios
-      .get(`/api/notice/view/${id}`)
-      .then(navigate(`/notice/view/${id}#top`))
-      .then((e) => {
-        setNotice(e.data);
-        setMyNoticeLike(e.data.myNoticeLike);
-      });
-  }
-
-  function handleSearchClick() {
-    const searchInfo = { type: search.type, keyword: search.keyword };
-    const searchQuery = new URLSearchParams(searchInfo);
-    navigate(`/notice/list?${searchQuery.toString()}`);
-  }
-
-  function handlePageChangeClick(e) {
-    const pageNumber = { page: e.page };
-    const pageQuery = new URLSearchParams(pageNumber);
-    const searchInfo = { type: search.type, keyword: search.keyword };
-    const searchQuery = new URLSearchParams(searchInfo);
-    // const pageURL = new URL(`http://localhost:5173/community/list?${pageQuery.toString()}`);
-    navigate(`/notice/list?${searchQuery.toString()}&${pageQuery.toString()}`);
-  }
-
-  const optionList = createListCollection({
-    items: [
-      { label: "전체", value: "all" },
-      { label: "제목", value: "title" },
-      { label: "본문", value: "content" },
-      { label: "작성자", value: "writer" },
-    ],
-  });
 
   return (
     <div className={"notice"}>

@@ -208,23 +208,13 @@ public class CommunityController {
 
     @PostMapping("like/{id}")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<Map<String, Object>> like(@PathVariable Integer id, Authentication auth) {
+    public void like(@PathVariable Integer id, Authentication auth) {
         if (service.checkMember(auth)) {
             if (service.checkLikeInCommunity(id, auth)) {
                 service.removeLikeInCommunity(id, auth);
-                return ResponseEntity.ok()
-                        .body(Map.of("message", Map.of("type", "default",
-                                "text", "추천을 취소하였습니다")));
             } else {
                 service.addLikeInCommunity(id, auth);
-                return ResponseEntity.ok()
-                        .body(Map.of("message", Map.of("type", "success",
-                                "text", "게시글을 추천하였습니다")));
             }
-        } else {
-            return ResponseEntity.status(403)
-                    .body(Map.of("message", Map.of("type", "warning",
-                            "text", "권한이 없습니다.")));
         }
     }
 
