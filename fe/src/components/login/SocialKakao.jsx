@@ -4,7 +4,7 @@ import "./kakao.css";
 
 const REST_API_KEY = import.meta.env.VITE_KAKAO_LOGIN_API_KEY;
 
-const redirect_uri = "http://localhost:5173/member/login/process";
+const redirect_uri = "http://43.201.70.26:8080/member/login/process";
 
 const SocialKakao = () => {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code&prompt=login`;

@@ -16,7 +16,10 @@ export function MemberLoginProcess() {
       const data = new URLSearchParams();
       data.append("grant_type", "authorization_code");
       data.append("client_id", import.meta.env.VITE_KAKAO_LOGIN_API_KEY); // REST API 키
-      data.append("redirect_uri", "http://localhost:5173/member/login/process"); // 리다이렉트 URI
+      data.append(
+        "redirect_uri",
+        "http://43.201.70.26:8080/member/login/process",
+      ); // 리다이렉트 URI
       data.append("code", code); // 인가 코드
 
       //카카오에 토큰 요청
