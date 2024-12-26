@@ -31,7 +31,7 @@ export function MemberLoginProcess() {
         })
         .then((response) => {
           const tokenData = response.data;
-          // console.log("토큰 정보", tokenData);
+          console.log("토큰 정보", tokenData.access_token);
           if (tokenData.access_token) {
             //사용자 정보 요청
             axios

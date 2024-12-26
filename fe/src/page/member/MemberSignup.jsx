@@ -117,6 +117,8 @@ function MemberSignup(props) {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code&prompt=login`;
   };
 
+  console.log("가입시", window.location);
+
   return (
     <div className={"member body-narrow"}>
       <h1>회원 가입</h1>

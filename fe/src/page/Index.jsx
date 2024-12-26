@@ -23,7 +23,7 @@ export function Index() {
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthenticationContext);
 
-  console.log(window.location);
+  console.log("정보", window.location);
 
   useEffect(() => {
     axios
