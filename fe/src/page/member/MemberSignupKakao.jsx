@@ -136,26 +136,28 @@ function MemberSignupKakao() {
                   <span className={"required"}>&#42;</span>
                 </label>
               </form>
-              <div className={"duplicate-check"}>
-                <input
-                  id={"nickname"}
-                  type={"text"}
-                  maxLength="20"
-                  required
-                  defaultValue={kakaoNickname}
-                  onChange={(e) => {
-                    setNicknameCheck(false);
-                    setNickname(e.target.value);
-                  }}
-                />
-                <button
-                  className={"btn-check btn-dark"}
-                  onClick={handleKakaoNicknameCheck}
-                  disabled={nicknameCheckButtonDisabled}
-                >
-                  중복 확인
-                </button>
-              </div>
+              <Field helperText={"반드시 중복 여부를 확인해 주십시오."}>
+                <div className={"duplicate-check"}>
+                  <input
+                    id={"nickname"}
+                    type={"text"}
+                    maxLength="20"
+                    required
+                    defaultValue={kakaoNickname}
+                    onChange={(e) => {
+                      setNicknameCheck(false);
+                      setNickname(e.target.value);
+                    }}
+                  />
+                  <button
+                    className={"btn-check btn-dark"}
+                    onClick={handleKakaoNicknameCheck}
+                    disabled={nicknameCheckButtonDisabled}
+                  >
+                    중복 확인
+                  </button>
+                </div>
+              </Field>
             </li>
 
             <li>
