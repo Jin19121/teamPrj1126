@@ -23,6 +23,8 @@ export function Index() {
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthenticationContext);
 
+  console.log(window.location);
+
   useEffect(() => {
     axios
       .get("/api/index", {
