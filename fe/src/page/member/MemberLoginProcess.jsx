@@ -92,5 +92,17 @@ export function MemberLoginProcess() {
     }
   }, [window.location.search]);
 
-  return <>로그인 진행중...</>;
+  return (
+    <div>
+      <p>로그인 진행중...</p>
+      <br />
+      <p>진행이 지체될 시 눌러주세요</p>
+      <button
+        className={"btn btn-dark-outline"}
+        onClick={() => navigate(`/member/login`)}
+      >
+        로그인 재시도
+      </button>
+    </div>
+  );
 }
