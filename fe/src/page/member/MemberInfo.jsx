@@ -81,7 +81,7 @@ function MemberInfo(props) {
             {member.kakao && (
               <li>
                 <label htmlFor="kakao">연동 계정</label>
-                <input type={"text"} readonly value={"카카오톡"} />
+                <input type={"text"} readOnly value={"카카오톡"} />
               </li>
             )}
           </ul>
