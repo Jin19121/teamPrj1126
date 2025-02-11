@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Center, Image } from "@chakra-ui/react";
 import { AuthenticationContext } from "../../components/context/AuthenticationProvider.jsx";
-import * as PortOne from "/libs/browser-sdk";
 import { Breadcrumb } from "../../components/root/Breadcrumb.jsx";
 import RandomString from "../../components/login/RandomString.jsx";
 import { formatNumberWithCommas } from "../../components/utils/FormatNumberWithCommas.jsx";
+import PortOne from "@portone/browser-sdk/v2";
 
 const { VITE_STORE_ID, VITE_KAKAOPAY_CHANNEL_KEY, VITE_TOSSPAY_CHANNEL_KEY } =
   import.meta.env;
