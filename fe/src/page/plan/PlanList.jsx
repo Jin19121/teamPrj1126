@@ -206,7 +206,7 @@ function PlanList(props) {
                 className="btn btn-dark-outline"
                 onClick={handleShowAllPlans}
               >
-                전체보기
+                전체 보기
               </button>
             </div>
 
