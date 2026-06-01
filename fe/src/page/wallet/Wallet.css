@@ -50,7 +50,7 @@ section {
 .middle-section .category-table {
     width: 100%;
     border-bottom: 1px solid var(--table-border-color);
-    magin: 0 auto;
+    margin: 0 auto;
     padding: 40px 30px;
 }
 

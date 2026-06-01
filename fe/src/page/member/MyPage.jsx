@@ -30,6 +30,7 @@ function MyPage(props) {
   const [kakao, setKakao] = useState(false);
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
+  const [member, setMember] = useState([]);
   const { logout, isPartner, isAdmin } = useContext(AuthenticationContext);
   const { email } = useParams();
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ function MyPage(props) {
     axios
       .get(`/api/member/${email}`)
       .then((res) => {
+        setMember(res.data);
         setKakao(res.data.kakao);
         setPassword(res.data.password);
       })
@@ -168,11 +170,11 @@ function MyPage(props) {
                       <Stack>
                         <p>
                           회원 정보 삭제를 확인하려면 텍스트 입력 필드에{" "}
-                          {password}을 따라 입력해 주십시오
+                          {member.password}을 따라 입력해 주십시오
                         </p>
                         <Field>
                           <Input
-                            placeholder={password}
+                            placeholder={member.password}
                             onChange={(e) => setPassword(e.target.value)}
                           />
                         </Field>

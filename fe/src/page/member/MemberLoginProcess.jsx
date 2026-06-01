@@ -16,7 +16,7 @@ export function MemberLoginProcess() {
       const data = new URLSearchParams();
       data.append("grant_type", "authorization_code");
       data.append("client_id", import.meta.env.VITE_KAKAO_LOGIN_API_KEY); // REST API 키
-      data.append("redirect_uri", "http://localhost:5173/member/login/process"); // 리다이렉트 URI
+      data.append("redirect_uri", location.origin + "/member/login/process"); // 리다이렉트 URI
       data.append("code", code); // 인가 코드
 
       //카카오에 토큰 요청
@@ -28,7 +28,7 @@ export function MemberLoginProcess() {
         })
         .then((response) => {
           const tokenData = response.data;
-          // console.log("토큰 정보", tokenData);
+          console.log("토큰 정보", tokenData.access_token);
           if (tokenData.access_token) {
             //사용자 정보 요청
             axios
@@ -92,5 +92,17 @@ export function MemberLoginProcess() {
     }
   }, [window.location.search]);
 
-  return <>로그인 진행중...</>;
+  return (
+    <div>
+      <p>로그인 진행중...</p>
+      <br />
+      <p>진행이 지체될 시 눌러주세요</p>
+      <button
+        className={"btn btn-dark-outline"}
+        onClick={() => navigate(`/member/login`)}
+      >
+        로그인 재시도
+      </button>
+    </div>
+  );
 }

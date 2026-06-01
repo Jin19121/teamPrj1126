@@ -21,7 +21,9 @@ export function Index() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedPlans, setSelectedPlans] = useState([]);
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(AuthenticationContext);
+  const { isAuthenticated, location, setLocation } = useContext(
+    AuthenticationContext,
+  );
 
   useEffect(() => {
     axios

@@ -27,11 +27,6 @@
     }
   },
   "exports": {
-    ".": {
-      "types": "./dist/v2/index.d.ts",
-      "require": "./dist/v2.cjs",
-      "import": "./dist/v2.js"
-    },
     "./v2": {
       "types": "./dist/v2/index.d.ts",
       "require": "./dist/v2.cjs",
